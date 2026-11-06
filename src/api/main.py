@@ -23,6 +23,26 @@ app = FastAPI(title="TrustBank Fraud Detection API")
 # Loaded once at startup (do NOT load the model per-request).
 detector = FraudDetector()
 store = FeatureStore()
+FEATURE_CACHE_SECONDS = 1.0
+FEATURE_CACHE_CAPACITY = 1024
+feature_cache: dict[str, tuple[float, dict]] = {}
+
+
+async def customer_features_for_prediction(customer_id: str):
+    now = time.monotonic()
+    cached = feature_cache.get(customer_id)
+    if cached is not None and now < cached[0]:
+        return cached[1]
+
+    features = await asyncio.to_thread(store.get_customer_features, customer_id)
+    expires = now + FEATURE_CACHE_SECONDS
+    if features is not None and expires > time.monotonic():
+        current = feature_cache.get(customer_id)
+        if current is None or current[0] < expires:
+            if current is None and len(feature_cache) >= FEATURE_CACHE_CAPACITY:
+                del feature_cache[next(iter(feature_cache))]
+            feature_cache[customer_id] = (expires, features)
+    return features
 
 
 class Transaction(BaseModel):
@@ -63,7 +83,7 @@ async def predict_fraud(txn: Transaction):
     
     prediction_start_time = time.perf_counter()    
     
-    customer_features = await asyncio.to_thread(store.get_customer_features, txn.customer_id)
+    customer_features = await customer_features_for_prediction(txn.customer_id)
     
     if customer_features is None:
       customer_features = {'transaction_count': 0, 'avg_amount': 0}
