@@ -41,7 +41,10 @@ class FeatureStore:
     # --- IMPLEMENT ---------------------------------------------------------
     def store_customer_features(self, customer_id: str, features: dict) -> None:
         """Serialize `features` to JSON and SET it under _key(customer_id)
-        with an expiry of self.ttl_seconds. (Hint: redis SET(..., ex=...))"""
+        with an expiry of self.ttl_seconds. (Hint: redis SET(..., ex=...))
+
+        Each write replaces the stored summary and resets its TTL.
+        """
        
         customer_features_key = self._key(customer_id)
         customer_features_json = json.dumps(features)
@@ -64,7 +67,12 @@ class FeatureStore:
   
     def get_customer_features_batch(self, customer_ids: list[str]) -> dict:
         """Return {customer_id: features_dict_or_None} using a SINGLE round-trip
-        (redis pipeline or MGET), not one GET per id."""
+        (redis pipeline or MGET), not one GET per id.
+
+        This implementation uses MGET and decodes each returned JSON value.
+        Missing or expired keys map to None; an empty input returns an empty dict
+        without contacting Redis.
+        """
         
         if len(customer_ids) == 0: return {}
         

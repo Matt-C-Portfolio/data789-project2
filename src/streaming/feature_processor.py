@@ -33,11 +33,18 @@ class FeatureProcessor:
         self.window_seconds = window_seconds or int(os.getenv("FEATURE_WINDOW_SECONDS", "86400"))
         # per customer: list of (event_epoch, amount)  — provided bookkeeping
         self._events: dict[str, list[tuple[float, float]]] = defaultdict(list)
+        # History and seen IDs remain in memory for this processor's lifetime.
+        # Window filtering excludes old events without removing them from history.
         self._seen_ids: set[str] = set()
         self._latest_time: dict[str, float] = {}
 
     def update(self, txn: dict) -> None:
-        """Record one transaction into the per-customer window buffer."""
+        """Record a transaction unless its non-null ID has already been seen.
+
+        Transactions without an ID are recorded on every call. Track the latest
+        timestamp per customer so a late arrival cannot move the window backward.
+        History and duplicate tracking are in memory and are not persisted.
+        """
         transaction_id = txn.get('transaction_id')
         
         if transaction_id in self._seen_ids:

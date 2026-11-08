@@ -17,6 +17,7 @@
 # (Kafka + Redis are already provided for you in docker-compose.yml — you only
 #  need to containerize YOUR app and wire it in.)
 
+# Install dependencies separately so the runtime copies the installed packages.
 FROM python:3.11-slim AS builder
 WORKDIR /build
 
@@ -35,6 +36,7 @@ RUN useradd --create-home appuser
 USER appuser
 
 EXPOSE 8000
+# HTTP health check for the API; Compose disables it for the two worker services.
 HEALTHCHECK CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
 CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
 

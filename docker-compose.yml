@@ -44,6 +44,8 @@ services:
 
   # ---------- TODO: add YOUR services below ----------
   # Each builds from your Dockerfile (build: .) and connects to kafka + redis.
+  # Implementation: the API reads Redis, the processor uses Kafka and Redis,
+  # and the simulator publishes to Kafka.
   
   api:
     build: .
@@ -67,6 +69,7 @@ services:
     depends_on:
       kafka: { condition: service_started }
       redis: { condition: service_started }
+    # This worker does not serve HTTP, so disable the image's API health check.
     healthcheck:
       disable: true
   #
@@ -77,5 +80,6 @@ services:
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
     depends_on:
       kafka: { condition: service_started }
+    # This worker does not serve HTTP, so disable the image's API health check.
     healthcheck:
       disable: true

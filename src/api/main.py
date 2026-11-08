@@ -29,6 +29,15 @@ feature_cache: dict[str, tuple[float, dict]] = {}
 
 
 async def customer_features_for_prediction(customer_id: str):
+    """Return cached customer features or fetch them from Redis in a worker thread.
+
+    The process-local cache holds at most 1,024 customer summaries. Entries expire
+    one second after the lookup starts; hits do not extend that deadline. Missing
+    summaries are not cached. At capacity, adding a new customer evicts the oldest
+    inserted entry. Expired entries are ignored on reads, not removed on a timer.
+    Redis updates may remain unseen until the cached entry expires. Batch
+    predictions bypass this cache.
+    """
     now = time.monotonic()
     cached = feature_cache.get(customer_id)
     if cached is not None and now < cached[0]:
@@ -79,7 +88,13 @@ async def predict_fraud(txn: Transaction):
     2. merge them with the transaction fields into one dict
     3. score:  detector.predict(merged)
     4. measure latency and return a FraudPrediction
-    Invalid input already returns HTTP 422 automatically (Pydantic)."""
+    Invalid input already returns HTTP 422 automatically (Pydantic).
+
+    Implementation: retrieve features through the one-second cache, default
+    missing summaries to zero, and score the merged inputs in a worker thread.
+    latency_ms measures elapsed handler time through completion of scoring;
+    it excludes response serialization and client/network time.
+    """
     
     prediction_start_time = time.perf_counter()    
     
@@ -108,7 +123,14 @@ async def predict_fraud(txn: Transaction):
 @app.post("/predict_batch")
 async def predict_fraud_batch(txns: List[Transaction]):
     """TODO (students): batch version of /predict — retrieve features for all
-    customers in one call (store.get_customer_features_batch) and score each."""
+    customers in one call (store.get_customer_features_batch) and score each.
+
+    Implementation: bypass the cache and retrieve summaries with one MGET.
+    Score transactions sequentially in input order, using zero features when
+    a summary is missing. Each latency_ms includes the shared batch lookup
+    duration plus that transaction's processing time, not total batch time.
+    An empty batch returns an empty list without a Redis lookup.
+    """
     
     if len(txns) == 0 : return []
     

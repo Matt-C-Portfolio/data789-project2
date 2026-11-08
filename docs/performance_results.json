@@ -1,0 +1,581 @@
+{
+  "baseline_commit": "82bd7299095e38211e6fb39abc72f37628e2a2de",
+  "cache_source_sha256": "7009d9c53de94fba3647d954b151c6043a4dcaaa2f4ce70fcccb65d4349d7888",
+  "seed": 789,
+  "requests_per_trial": 1000,
+  "cache_seconds": 1,
+  "initial_redis_state": [
+    "9a233c5caa03cb691f62bd54ecf1227f72a62c1ba72934052e84f295deed7ab8",
+    200
+  ],
+  "model": {
+    "baseline": "sklearn-logreg-v1",
+    "cached": "sklearn-logreg-v1"
+  },
+  "urls": {
+    "baseline": "http://127.0.0.1:56499",
+    "cached": "http://127.0.0.1:56505"
+  },
+  "trials": [
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 397.5,
+      "latency_ms": {
+        "p50": 1.97,
+        "p95": 3.31,
+        "p99": 4.75,
+        "max": 29.56
+      },
+      "pair": 1,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 531.5,
+      "latency_ms": {
+        "p50": 1.55,
+        "p95": 2.05,
+        "p99": 2.38,
+        "max": 7.02
+      },
+      "pair": 1,
+      "version": "cached",
+      "redis_gets": 307
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 481.8,
+      "latency_ms": {
+        "p50": 1.75,
+        "p95": 2.46,
+        "p99": 2.88,
+        "max": 7.58
+      },
+      "pair": 2,
+      "version": "cached",
+      "redis_gets": 327
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 418.8,
+      "latency_ms": {
+        "p50": 1.91,
+        "p95": 2.81,
+        "p99": 3.53,
+        "max": 7.74
+      },
+      "pair": 2,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 465.6,
+      "latency_ms": {
+        "p50": 1.84,
+        "p95": 2.24,
+        "p99": 2.55,
+        "max": 7.46
+      },
+      "pair": 3,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 458.7,
+      "latency_ms": {
+        "p50": 1.79,
+        "p95": 2.82,
+        "p99": 3.25,
+        "max": 7.73
+      },
+      "pair": 3,
+      "version": "cached",
+      "redis_gets": 324
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 511.7,
+      "latency_ms": {
+        "p50": 1.61,
+        "p95": 2.19,
+        "p99": 2.69,
+        "max": 7.03
+      },
+      "pair": 4,
+      "version": "cached",
+      "redis_gets": 315
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 461.8,
+      "latency_ms": {
+        "p50": 1.85,
+        "p95": 2.28,
+        "p99": 2.64,
+        "max": 6.92
+      },
+      "pair": 4,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 375.9,
+      "latency_ms": {
+        "p50": 2.22,
+        "p95": 3.63,
+        "p99": 5.03,
+        "max": 8.78
+      },
+      "pair": 5,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 520.7,
+      "latency_ms": {
+        "p50": 1.61,
+        "p95": 2.09,
+        "p99": 2.48,
+        "max": 7.05
+      },
+      "pair": 5,
+      "version": "cached",
+      "redis_gets": 314
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 528.1,
+      "latency_ms": {
+        "p50": 1.56,
+        "p95": 2.09,
+        "p99": 2.42,
+        "max": 6.88
+      },
+      "pair": 6,
+      "version": "cached",
+      "redis_gets": 307
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 425.8,
+      "latency_ms": {
+        "p50": 1.89,
+        "p95": 3.01,
+        "p99": 3.76,
+        "max": 9.81
+      },
+      "pair": 6,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 470.5,
+      "latency_ms": {
+        "p50": 1.83,
+        "p95": 2.18,
+        "p99": 2.41,
+        "max": 7.39
+      },
+      "pair": 7,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 467.4,
+      "latency_ms": {
+        "p50": 1.71,
+        "p95": 3.01,
+        "p99": 4.51,
+        "max": 16.12
+      },
+      "pair": 7,
+      "version": "cached",
+      "redis_gets": 332
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 505.9,
+      "latency_ms": {
+        "p50": 1.61,
+        "p95": 2.15,
+        "p99": 3.23,
+        "max": 9.8
+      },
+      "pair": 8,
+      "version": "cached",
+      "redis_gets": 316
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 469.4,
+      "latency_ms": {
+        "p50": 1.82,
+        "p95": 2.2,
+        "p99": 2.5,
+        "max": 7.15
+      },
+      "pair": 8,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 355.0,
+      "latency_ms": {
+        "p50": 2.38,
+        "p95": 3.92,
+        "p99": 5.17,
+        "max": 10.14
+      },
+      "pair": 9,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 518.1,
+      "latency_ms": {
+        "p50": 1.6,
+        "p95": 2.12,
+        "p99": 2.4,
+        "max": 7.14
+      },
+      "pair": 9,
+      "version": "cached",
+      "redis_gets": 315
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 530.2,
+      "latency_ms": {
+        "p50": 1.56,
+        "p95": 1.98,
+        "p99": 2.24,
+        "max": 7.03
+      },
+      "pair": 10,
+      "version": "cached",
+      "redis_gets": 308
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 464.9,
+      "latency_ms": {
+        "p50": 1.84,
+        "p95": 2.26,
+        "p99": 2.86,
+        "max": 7.09
+      },
+      "pair": 10,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 466.2,
+      "latency_ms": {
+        "p50": 1.84,
+        "p95": 2.27,
+        "p99": 2.46,
+        "max": 7.47
+      },
+      "pair": 11,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 436.2,
+      "latency_ms": {
+        "p50": 1.94,
+        "p95": 2.96,
+        "p99": 3.92,
+        "max": 7.07
+      },
+      "pair": 11,
+      "version": "cached",
+      "redis_gets": 345
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 520.5,
+      "latency_ms": {
+        "p50": 1.62,
+        "p95": 2.04,
+        "p99": 2.26,
+        "max": 7.0
+      },
+      "pair": 12,
+      "version": "cached",
+      "redis_gets": 316
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 471.6,
+      "latency_ms": {
+        "p50": 1.8,
+        "p95": 2.23,
+        "p99": 2.97,
+        "max": 6.95
+      },
+      "pair": 12,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 427.0,
+      "latency_ms": {
+        "p50": 1.92,
+        "p95": 2.77,
+        "p99": 3.35,
+        "max": 7.1
+      },
+      "pair": 13,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 524.8,
+      "latency_ms": {
+        "p50": 1.57,
+        "p95": 2.1,
+        "p99": 2.41,
+        "max": 6.96
+      },
+      "pair": 13,
+      "version": "cached",
+      "redis_gets": 310
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 520.3,
+      "latency_ms": {
+        "p50": 1.58,
+        "p95": 2.06,
+        "p99": 2.41,
+        "max": 7.03
+      },
+      "pair": 14,
+      "version": "cached",
+      "redis_gets": 312
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 461.1,
+      "latency_ms": {
+        "p50": 1.85,
+        "p95": 2.31,
+        "p99": 2.84,
+        "max": 7.66
+      },
+      "pair": 14,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 447.1,
+      "latency_ms": {
+        "p50": 1.91,
+        "p95": 2.45,
+        "p99": 2.78,
+        "max": 7.89
+      },
+      "pair": 15,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 430.6,
+      "latency_ms": {
+        "p50": 1.93,
+        "p95": 3.03,
+        "p99": 4.24,
+        "max": 25.53
+      },
+      "pair": 15,
+      "version": "cached",
+      "redis_gets": 344
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 520.2,
+      "latency_ms": {
+        "p50": 1.6,
+        "p95": 2.08,
+        "p99": 2.39,
+        "max": 7.06
+      },
+      "pair": 16,
+      "version": "cached",
+      "redis_gets": 316
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 466.0,
+      "latency_ms": {
+        "p50": 1.84,
+        "p95": 2.2,
+        "p99": 2.51,
+        "max": 7.31
+      },
+      "pair": 16,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 414.3,
+      "latency_ms": {
+        "p50": 2.01,
+        "p95": 2.9,
+        "p99": 3.89,
+        "max": 26.48
+      },
+      "pair": 17,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 520.3,
+      "latency_ms": {
+        "p50": 1.57,
+        "p95": 2.13,
+        "p99": 2.42,
+        "max": 7.02
+      },
+      "pair": 17,
+      "version": "cached",
+      "redis_gets": 310
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 466.0,
+      "latency_ms": {
+        "p50": 1.73,
+        "p95": 2.99,
+        "p99": 4.17,
+        "max": 6.95
+      },
+      "pair": 18,
+      "version": "cached",
+      "redis_gets": 325
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 457.8,
+      "latency_ms": {
+        "p50": 1.85,
+        "p95": 2.41,
+        "p99": 2.9,
+        "max": 6.69
+      },
+      "pair": 18,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 449.5,
+      "latency_ms": {
+        "p50": 1.91,
+        "p95": 2.43,
+        "p99": 2.81,
+        "max": 7.04
+      },
+      "pair": 19,
+      "version": "baseline",
+      "redis_gets": 1000
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 416.6,
+      "latency_ms": {
+        "p50": 1.98,
+        "p95": 3.11,
+        "p99": 4.24,
+        "max": 26.05
+      },
+      "pair": 19,
+      "version": "cached",
+      "redis_gets": 340
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 519.1,
+      "latency_ms": {
+        "p50": 1.58,
+        "p95": 2.14,
+        "p99": 2.52,
+        "max": 7.15
+      },
+      "pair": 20,
+      "version": "cached",
+      "redis_gets": 309
+    },
+    {
+      "requests": 1000,
+      "errors": 0,
+      "throughput_rps": 465.8,
+      "latency_ms": {
+        "p50": 1.83,
+        "p95": 2.19,
+        "p99": 2.65,
+        "max": 16.13
+      },
+      "pair": 20,
+      "version": "baseline",
+      "redis_gets": 1000
+    }
+  ]
+}
